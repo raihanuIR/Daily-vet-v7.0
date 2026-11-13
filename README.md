@@ -1,30 +1,74 @@
-# 🐾 DailyVet v7.0
+<div align="center">
 
-**AI-powered animal care and climate-risk platform for farmers and pet owners in Bangladesh.**
-Bilingual (English / বাংলা), mobile-first, installable as a PWA.
+<img src="assets/dailyvet.png" alt="DailyVet logo" width="110">
 
-DailyVet helps livestock, poultry and pet owners diagnose problems early, find medicine and
-nearby vets, plan feed, and stay ahead of climate risks such as floods, heat stress and
-disease outbreaks, using AI plus NASA and weather data.
+# DailyVet
+
+**AI-powered animal care and climate-risk platform for Bangladesh**
+
+Early diagnosis, medicine and vet discovery, feed planning, and NASA-backed climate warnings
+for livestock, poultry and pet owners.
+
+![Version](https://img.shields.io/badge/version-7.0-0e7c7b)
+![Frontend](https://img.shields.io/badge/frontend-HTML%20%7C%20CSS%20%7C%20JS-1f6feb)
+![Backend](https://img.shields.io/badge/backend-Firebase-ffca28)
+![AI](https://img.shields.io/badge/AI-Gemini%20%7C%20Groq%20%7C%20OpenRouter-8e44ad)
+![PWA](https://img.shields.io/badge/PWA-ready-5a0fc8)
+![Languages](https://img.shields.io/badge/languages-English%20%7C%20%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE-2ea043)
+
+</div>
 
 ---
 
-## ✨ Features
+## Table of Contents
 
-### 🩺 Animal health
-| Feature | Page | What it does |
+1. [Overview](#overview)
+2. [Key Features](#key-features)
+3. [Architecture](#architecture)
+4. [Tech Stack](#tech-stack)
+5. [Project Structure](#project-structure)
+6. [Getting Started](#getting-started)
+7. [Configuration](#configuration)
+8. [Deployment](#deployment)
+9. [Security](#security)
+10. [Roadmap](#roadmap)
+11. [Disclaimer](#disclaimer)
+12. [Changelog](#changelog)
+
+---
+
+## Overview
+
+Farmers and pet owners in Bangladesh often lack quick access to a veterinarian, reliable medicine
+information, and early warning of climate hazards. DailyVet brings these together in a single,
+mobile-first web app that works in **English and Bangla**.
+
+- Describe symptoms in text or upload a photo and get structured guidance from the **AI Doctor**.
+- Identify breed, scan prescriptions, droppings and urine, and look up medicines.
+- Find and contact registered veterinarians near you.
+- Monitor flood, heat-stress, air-quality and disease-outbreak risk using NASA and weather data.
+- Compare multi-season crop and forage rotations with the **Field Shift** explorer.
+
+---
+
+## Key Features
+
+### Animal health
+
+| Module | Page | Description |
 |---|---|---|
-| **AI Doctor** | `ai.html` | Chat (text + photo) about symptoms for cattle, buffalo, goat, sheep, poultry, ducks, pigeons, dogs, cats, rabbits, fish and more. Understands English, Bangla and Banglish. |
-| **Breed Detection** | `breed-detection.html` | Upload a photo to identify species, breed, sex and health signs, with buying advice. |
-| **Dung & Urine Test** | `excreta-scan.html` | Photo-based screening of droppings or urine for parasite and health indicators. |
-| **Read Prescription** | `scanner.html` | Scans a prescription or medicine document and explains it in plain language. |
-| **Find Medicine** | `pharma.html` | Medicine lookup by animal and disease. |
-| **Find a Doctor** | `vet-home.html`, `vet-profile.html` | Browse registered vets, call or WhatsApp them, and see nearby vets from your location. |
-| **Feed Plan** | `advisor.html` | Feed and nutrition guidance. |
-| **Emergency** | `emergency.html` | Emergency help page. |
+| AI Doctor | `ai.html` | Text and photo consultation for cattle, buffalo, goat, sheep, poultry, ducks, pigeons, dogs, cats, rabbits, fish and other animals. Understands English, Bangla and Banglish. |
+| Breed Detection | `breed-detection.html` | Identifies species, breed, sex and visible health signs from a photo, with buying advice. |
+| Dung and Urine Test | `excreta-scan.html` | Photo-based screening of droppings and urine for health indicators. |
+| Read Prescription | `scanner.html` | Scans prescriptions or medicine documents and explains them in plain language. |
+| Find Medicine | `pharma.html` | Medicine lookup by animal and condition. |
+| Find a Doctor | `vet-home.html`, `vet-profile.html` | Browse registered vets, call or message on WhatsApp, and discover nearby vets by location. |
+| Feed Plan | `advisor.html` | Feed and nutrition guidance. |
+| Emergency | `emergency.html` | Emergency help page. |
 
-### 🌦️ Climate and farm risk
-| Feature | Page |
+### Climate and farm risk
+
+| Module | Page |
 |---|---|
 | NASA Climate Dashboard | `climate-dashboard.html` |
 | Division Risk Map | `climate-map.html` |
@@ -34,100 +78,171 @@ disease outbreaks, using AI plus NASA and weather data.
 | Air Quality and UV Warning | `climate-air-quality.html` |
 | Forage Plan | `climate-forage.html` |
 | Socio-Economic Impact | `climate-impact.html` |
-| **Field Shift: Rotation Explorer** | `rotation-compare.html`: compares 3 multi-season crop/forage rotations using soil moisture, NDVI, soil data, planting season, soil type and risk tolerance, with a printable plan |
+| Field Shift: Rotation Explorer | `rotation-compare.html` |
 
-### 👥 Accounts and community
-- User registration and login, profile management
-- Vet registration and vet profiles
-- Community page and support center
-- Notifications, language toggle (English / বাংলা)
+**Field Shift** compares three multi-season rotations (current path, soil-building, goal-focused)
+using soil moisture, NDVI, soil properties, planting window, soil type and risk tolerance, and
+produces a printable plan. Scores are relative planning indices, not yield forecasts.
 
----
+### Platform
 
-## 🧰 Tech stack
-
-- **Front end:** static HTML, CSS and vanilla JavaScript (no build step)
-- **Backend / data:** Firebase (Firestore)
-- **AI:** Google Gemini, with Groq and OpenRouter as fail-over, called through a serverless proxy
-- **Climate / geo data:** NASA POWER, MODIS NDVI, SoilGrids, NASA GPM, SEDAC, Open-Meteo, GeoJSON maps of Bangladesh (divisions, districts, upazilas), Leaflet
-- **Maps / location:** browser Geolocation, Google Places (optional), LocationIQ
-- **Hosting:** Vercel or Netlify (serverless functions in `api/` and `netlify/functions/`)
-- **PWA:** service worker (`sw.js`) for faster repeat visits
+- Bilingual interface (English / Bangla) with an accessible language dropdown
+- User and vet registration, profiles, community and support center
+- Login guard that redirects before protected pages render
+- Automatic location detection when permission is already granted
+- Installable PWA with service-worker caching
 
 ---
 
-## 📁 Project structure
+## Architecture
 
 ```
-├── index.html            Landing page
-├── home.html             Logged-in home
-├── *.html                Feature pages (see tables above)
-├── css/                  Stylesheets
-├── js/                   Page logic, AI, auth, i18n, NASA/climate engines
-│   ├── auth.js           Login / register / session
-│   ├── auth-guard.js     Redirects to login before a protected page renders
-│   ├── ai.js             AI Doctor logic (species/symptom detection, prompts)
-│   ├── i18n.js, i18n-bn.js   English / Bangla translation + language dropdown
-│   └── location-service.js   Location access + nearby vets
-├── api/ai-proxy.js       Vercel serverless AI proxy
-├── netlify/functions/    Netlify serverless AI proxy
-├── data/                 Bangladesh GeoJSON boundaries
-├── assets/               Images / logo
-├── sw.js                 Service worker
-├── vercel.json, netlify.toml   Hosting config
-└── DEPLOY.md             Step-by-step deploy guide
+Browser (static HTML / CSS / vanilla JS, PWA)
+   |
+   |-- Firebase (Firestore)  ---------------- users, vets, history, community
+   |
+   |-- /api/ai-proxy  (Vercel)  or  /.netlify/functions/ai-proxy  (Netlify)
+   |        |
+   |        +-- Gemini  ->  Groq  ->  OpenRouter      (key rotation and fail-over)
+   |
+   +-- Public data APIs: NASA POWER, MODIS NDVI, SoilGrids, GPM, SEDAC, Open-Meteo
 ```
 
 ---
 
-## 🚀 Run locally
+## Tech Stack
 
-1. Clone the repo.
-2. Open the folder in VS Code and install the **Live Server** extension.
-3. Right-click `index.html` → **Open with Live Server**.
+| Layer | Technology |
+|---|---|
+| Frontend | HTML5, CSS3, vanilla JavaScript (no build step) |
+| Data | Firebase Firestore |
+| AI | Google Gemini with Groq and OpenRouter fail-over, via a serverless proxy |
+| Climate and geo | NASA POWER, MODIS NDVI, SoilGrids, NASA GPM, SEDAC, Open-Meteo, Leaflet, Bangladesh GeoJSON |
+| Location | Browser Geolocation, Google Places (optional), LocationIQ |
+| Hosting | Vercel or Netlify (serverless functions) |
+| PWA | Service worker (`sw.js`) |
 
-No build or install step is needed. See [DEPLOY.md](DEPLOY.md) for Netlify and Vercel.
+---
 
-## ☁️ Deploy
+## Project Structure
 
-- **Vercel:** import the repo, Framework Preset = *Other*, leave build/output empty. `api/ai-proxy.js` is used automatically.
-- **Netlify:** deploy the folder; `netlify.toml` routes `/api/ai-proxy` to the function.
+```
+.
+├── index.html, home.html        Landing page and signed-in home
+├── *.html                       Feature pages
+├── css/                         Stylesheets
+├── js/
+│   ├── auth.js                  Login, registration, session
+│   ├── auth-guard.js            Pre-render login guard
+│   ├── ai.js                    AI Doctor logic and prompts
+│   ├── breed-detection.js       Breed analysis
+│   ├── rotation-compare.js      Field Shift engine
+│   ├── crop-knowledge.js        Crop and forage knowledge base
+│   ├── location-service.js      Geolocation and nearby vets
+│   ├── i18n.js, i18n-bn.js      Translations and language dropdown
+│   └── nasa-*.js                NASA data engines
+├── api/ai-proxy.js              Vercel serverless AI proxy
+├── netlify/functions/           Netlify serverless AI proxy
+├── data/                        Bangladesh GeoJSON boundaries
+├── assets/                      Images and logo
+├── sw.js                        Service worker
+├── vercel.json, netlify.toml    Hosting configuration
+└── DEPLOY.md                    Detailed deployment guide
+```
 
-### Environment variables (recommended)
+---
 
-Set these in your hosting dashboard instead of keeping keys in code:
+## Getting Started
+
+**Prerequisites:** a modern browser and VS Code with the Live Server extension (or any static server).
+
+```bash
+git clone https://github.com/raihanuIR/Daily-vet-v7.0.git
+cd Daily-vet-v7.0
+```
+
+Open `index.html` with **Live Server**, or serve the folder:
+
+```bash
+npx serve .
+```
+
+No build or install step is required.
+
+---
+
+## Configuration
+
+Provide AI keys as environment variables in your hosting dashboard.
 
 | Variable | Purpose |
 |---|---|
-| `GEMINI_KEY_1` … `GEMINI_KEY_21` | Gemini API keys (rotated automatically) |
-| `GROQ_KEY_1` … `GROQ_KEY_5` | Groq fail-over keys |
-| `OPENROUTER_KEY_1` … `OPENROUTER_KEY_3` | OpenRouter fail-over keys |
+| `GEMINI_KEY_1` ... `GEMINI_KEY_21` | Gemini keys, rotated automatically |
+| `GROQ_KEY_1` ... `GROQ_KEY_5` | Groq fail-over keys |
+| `OPENROUTER_KEY_1` ... `OPENROUTER_KEY_3` | OpenRouter fail-over keys |
 
-AI fallback order: Gemini → Groq → OpenRouter.
-
----
-
-## 🔒 Security notes (please read before going public)
-
-This project is still hardening. Known items, with the full write-up in
-`DailyVet_Phone_Login_Security_Report.pdf`:
-
-- Login is currently phone-number based and the session is kept in browser storage; there is no server-verified session yet. The page guard in `auth-guard.js` only improves user experience and is not a security boundary.
-- Firestore security rules must be reviewed and locked down (rules by authenticated `uid`, default deny).
-- AI provider keys must **not** live in source. Revoke any key that has been committed and use environment variables.
-- The AI proxy should verify a login token, rate-limit, and restrict CORS to your own domain.
-- Planned: move to Firebase Authentication (Google sign-in or phone OTP) and `uid`-keyed data.
+Firebase settings live in `js/firebase-config.js`.
 
 ---
 
-## ⚠️ Disclaimer
+## Deployment
 
-DailyVet gives informational guidance only. It is **not** a substitute for a licensed
-veterinarian. Dosages and treatments must be confirmed by a qualified vet. Climate and
+| Platform | Steps |
+|---|---|
+| Vercel | Import the repo, set Framework Preset to **Other**, leave build and output empty. `api/ai-proxy.js` is used automatically. |
+| Netlify | Deploy the folder. `netlify.toml` routes `/api/ai-proxy` to the function. |
+
+See [DEPLOY.md](DEPLOY.md) for the full guide.
+
+---
+
+## Security
+
+DailyVet is under active hardening. Current known limitations:
+
+- **Authentication** is phone-number based and the session is stored in the browser. There is no server-verified session yet, so the page guard in `auth-guard.js` improves user experience but is not a security boundary.
+- **Firestore rules** must be reviewed and locked down (per-user access by authenticated `uid`, default deny).
+- **API keys** must not live in source. Revoke any committed key and use environment variables.
+- **AI proxy** should verify a login token, apply rate limits and restrict CORS to the production domain.
+
+A detailed analysis and fix plan is in `DailyVet_Phone_Login_Security_Report.pdf`.
+
+To report a vulnerability, please contact the maintainer privately rather than opening a public issue.
+
+---
+
+## Roadmap
+
+- [ ] Firebase Authentication (Google sign-in and/or phone OTP)
+- [ ] Re-key user data by `uid` and migrate existing accounts
+- [ ] Per-user Firestore security rules
+- [ ] Authenticated, rate-limited AI proxy
+- [ ] Vet role through server-side claims
+- [ ] Security headers (CSP, HSTS)
+
+---
+
+## Disclaimer
+
+DailyVet provides informational guidance only and is **not** a substitute for a licensed
+veterinarian. Medicine choice and dosage must be confirmed by a qualified vet. Climate and
 rotation scores are relative planning indices, not yield or outbreak forecasts.
 
 ---
 
-## 📄 Version
+## Changelog
 
-**v7.0**: bilingual UI, improved species detection (poultry, birds and more, in English and Bangla), smarter rotation planning, login page guard, location auto-detect, redesigned language dropdown.
+### v7.0
+- Broader species detection in the AI Doctor (poultry, birds and more) in English and Bangla
+- Improved image prompt and wider species support in Breed Detection
+- Smarter Field Shift rotation planning (season, soil type, risk tolerance)
+- Pre-render login guard and safer logout navigation
+- Automatic location detection when permission is granted
+- Redesigned language dropdown
+- Fixed password show/hide button
+
+---
+
+<div align="center">
+Built for farmers and animal lovers of Bangladesh.
+</div>
